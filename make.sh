@@ -11,7 +11,6 @@ FILENAME="basecosts"
 
 NFO="sprites/$FILENAME.nfo"
 [ ! -d "sprites" ] && mkdir sprites
-CURDATE=$(date --rfc-3339=date)
 
 ACTION0="00 08 01 01 00 08 08"
 
@@ -23,7 +22,7 @@ cat >$NFO <<EOF
   0 * 0	08 07 $GRFID "BaseCosts Mod $VERSION" 00
     "http://wiki.openttdcoop.org/BaseCosts" 0D
     "Usage Parameters: [<id> <value>]...(max. 8 pairs)" 0D
-    "$CURDATE / GPL / Ammler" 00
+    "$VERDATE / GPL / Ammler" 00
 // first pair params:
   0 * 0 0D // ActionD <target> <operation> <source1> <source2> [<data>]
     00          // Parameter 0
