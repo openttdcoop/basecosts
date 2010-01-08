@@ -1,12 +1,13 @@
 #!/bin/bash
 
 # http://wiki.openttdcoop.org/Basecosts
-
+# http://wiki.ttdpatch.net/tiki-index.php?page=BaseCosts
 # NewBaseCost = OldBaseCost * 2^(n-8), where n is the value of property 08.
 
 GRFID="4D 47 03 03"
 REVISION=`hg id -n`
-VERSION="3.r$REVISION"
+#VERSION="3.r$REVISION"
+VERSION="3.0"
 FILENAME="basecosts"
 
 NFO="sprites/$FILENAME.nfo"
@@ -20,8 +21,9 @@ cat >$NFO <<EOF
 // (Info version 7)
 // Format: spritenum pcxfile xpos ypos compression ysize xsize xrel yrel
   0 * 4 00 00 00 00
-  0 * 0	08 07 $GRFID "Basecosts Mod $VERSION" 00
-    "http://wiki.openttdcoop.org/Basecosts" 0D
+  0 * 0	08 07 $GRFID "BaseCosts Mod $VERSION" 00
+    "http://wiki.openttdcoop.org/BaseCosts" 0D
+    "Usage Parameters: [<id> <value>]...(max. 8 pairs)" 0D
     "$CURDATE / GPL / Ammler" 00
 // first pair params:
   0 * 0 0D // ActionD <target> <operation> <source1> <source2> [<data>]
@@ -40,7 +42,7 @@ cat >$NFO <<EOF
     02          // size
     \7=         // condition: equal to
     \wxFFFF
-    00          // skip the whole
+    02          // skip the whole (workaround because of bug, skip next 2)
 // else
   0 * 0 06 // Action6 (<param-num> <param-size> <offset>){n} FF
     00 \b1 \b4  // Parameter 0
@@ -58,7 +60,7 @@ cat >$NFO <<EOF
   0 * 0 0D 02 80 FF 00 \dxFFFF
   0 * 0 0D 03 80 FF 00 \d8
 
-  0 * 0 09 02 02 \7= \wxFFFF 00
+  0 * 0 09 02 02 \7= \wxFFFF 02
 
   0 * 0 06
     02 \b1 \b4
@@ -67,26 +69,10 @@ cat >$NFO <<EOF
 
   0 * 0 $ACTION0
 
-EOF
-
-renum $NFO
-grfcodec -e $FILENAME.grf
-
-exit
-
-  0 * 0 0B // ActionB <severity> <language-id> <message-id> [<message>] [<data> [<parnum> [<parnum>]]]
-    00          // Notice
-    7F
-    03          // Custom message, use text from <message>
-  //  "Paramter0:" 7B " Paramter1:" 7B 00
-    00 01
-
-
-
   0 * 0 0D 04 80 FF 00 \dxFFFF
   0 * 0 0D 05 80 FF 00 \d8
 
-  0 * 0 09 04 02 \7= \wxFFFF 00
+  0 * 0 09 04 02 \7= \wxFFFF 02
 
   0 * 0 06
     04 \b1 \b4
@@ -98,7 +84,7 @@ exit
   0 * 0 0D 06 80 FF 00 \dxFFFF
   0 * 0 0D 07 80 FF 00 \d8
 
-  0 * 0 09 06 02 \7= \wxFFFF 00
+  0 * 0 09 06 02 \7= \wxFFFF 02
 
   0 * 0 06
     06 \b1 \b4
@@ -110,7 +96,7 @@ exit
   0 * 0 0D 08 80 FF 00 \dxFFFF
   0 * 0 0D 09 80 FF 00 \d8
 
-  0 * 0 09 08 02 \7= \wxFFFF 00
+  0 * 0 09 08 02 \7= \wxFFFF 02
 
   0 * 0 06
     08 \b1 \b4
@@ -122,7 +108,7 @@ exit
   0 * 0 0D 0A 80 FF 00 \dxFFFF
   0 * 0 0D 0B 80 FF 00 \d8
 
-  0 * 0 09 0A 02 \7= \wxFFFF 00
+  0 * 0 09 0A 02 \7= \wxFFFF 02
 
   0 * 0 06
     0A \b1 \b4
@@ -134,7 +120,7 @@ exit
   0 * 0 0D 0C 80 FF 00 \dxFFFF
   0 * 0 0D 0D 80 FF 00 \d8
 
-  0 * 0 09 0C 02 \7= \wxFFFF 00
+  0 * 0 09 0C 02 \7= \wxFFFF 02
 
   0 * 0 06
     0C \b1 \b4
@@ -146,7 +132,7 @@ exit
   0 * 0 0D 0E 80 FF 00 \dxFFFF
   0 * 0 0D 0F 80 FF 00 \d8
 
-  0 * 0 09 0E 02 \7= \wxFFFF 00
+  0 * 0 09 0E 02 \7= \wxFFFF 02
 
   0 * 0 06
     0E \b1 \b4
@@ -154,3 +140,25 @@ exit
     FF
 
   0 * 0 $ACTION0
+
+EOF
+
+renum $NFO
+grfcodec -e $FILENAME.grf
+
+exit
+
+
+#################################################
+# Snippets / Notes
+#################################################
+
+  0 * 0 0B // ActionB <severity> <language-id> <message-id> [<message>] [<data> [<parnum> [<parnum>]]]
+    00          // Notice
+    7F
+    03          // Custom message, use text from <message>
+  //  "Paramter0:" 7B " Paramter1:" 7B 00
+    00 01
+
+
+
