@@ -6,4 +6,4 @@ if [ $TAG ]; then
 else
   VERSION="r`hg id -n`"
 fi
-
+VERDATE=`hg parent --template="{date|shortdate}"`
