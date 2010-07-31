@@ -5,10 +5,9 @@
 # NewBaseCost = OldBaseCost * 2^(n-8), where n is the value of property 08.
 
 GRFID="4D 47 03 03"
-REVISION=`hg id -n`
-#VERSION="3.r$REVISION"
-VERSION="3.0"
 FILENAME="basecosts"
+
+. lib/hg.version.sh
 
 NFO="sprites/$FILENAME.nfo"
 [ ! -d "sprites" ] && mkdir sprites
@@ -143,7 +142,7 @@ cat >$NFO <<EOF
 
 EOF
 
-renum $NFO
+nforenum $NFO
 grfcodec -e $FILENAME.grf
 
 exit
@@ -152,13 +151,4 @@ exit
 #################################################
 # Snippets / Notes
 #################################################
-
-  0 * 0 0B // ActionB <severity> <language-id> <message-id> [<message>] [<data> [<parnum> [<parnum>]]]
-    00          // Notice
-    7F
-    03          // Custom message, use text from <message>
-  //  "Paramter0:" 7B " Paramter1:" 7B 00
-    00 01
-
-
 
