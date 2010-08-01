@@ -1,0 +1,6 @@
+"Configure the BaseCosts in pairs" 0D
+"First chose the type you like to change"
+"from a list of 66 different types, then"
+"with next parameter set the factor, 8 (unchanged)"
+"is default, below 8 you reduce the costs,"
+"above 8 you rise the costs"
