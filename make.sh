@@ -117,9 +117,7 @@ let TYPE+=2
 let FACT+=2
 done
 
-nforenum $NFO
-grfcodec -e $FILENAME.grf
-md5sum $FILENAME.grf > $FILENAME.grf.md5
+. lib/buildgrf.sh
 
 exit
 
