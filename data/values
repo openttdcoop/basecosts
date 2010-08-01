@@ -1,0 +1,12 @@
+"T" \d1 7F "almost null" 00
+"T" \d7 7F "half" 00
+"T" \d8 7F "unchanged" 00
+"T" \d9 7F "double" 00
+"T" \d10 7F "4x" 00
+"T" \d11 7F "8x" 00
+"T" \d12 7F "16x" 00
+"T" \d13 7F "32x" 00
+"T" \d14 7F "64x" 00
+"T" \d15 7F "128x" 00
+"T" \d16 7F "256x" 00
+"T" \d17 7F "512x" 00

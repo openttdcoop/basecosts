@@ -19,127 +19,90 @@ cat >$NFO <<EOF
 // (Info version 7)
 // Format: spritenum pcxfile xpos ypos compression ysize xsize xrel yrel
   0 * 4 00 00 00 00
+
+ -1 * 0  14 "C" "INFO"
+                  "B" "PALS" \w1 "A"
+                  "B" "VRSN" \w4 \d$REVISION
+                  "B" "NPAR" \w1 \b16
+                  "C" "PARA"
+EOF
+PARAM=0
+while [ $PARAM -lt 16 ]; do
+cat >>$NFO <<EOB
+                      "C" \d$PARAM
+                          "T" "NAME" 7F "Type" 00
+                          "T" "DESC" 7F `cat data/param-desc` 00
+                          "B" "TYPE" \w1 \b0
+                          "B" "LIMI" \w8 \d0 \d65
+                          "C" "VALU"
+`cat data/keys`
+                              00
+                          00
+                      "C" \d`let PARAM++; echo $PARAM`
+                          "T" "NAME" 7F "Factor" 00
+                          "T" "DESC" 7F `cat data/param-desc` 00
+                          "B" "TYPE" \w1 \b0
+                          "B" "LIMI" \w8 \d1 \d17
+                          "C" "VALU"
+`cat data/values`
+                              00
+                          00
+EOB
+let PARAM+=2
+done
+cat >>$NFO <<EOF
+                      00
+                  00
+            00
+
+
   0 * 0	08 07 $GRFID "BaseCosts Mod $VERSION" 00
     "http://wiki.openttdcoop.org/BaseCosts" 0D
     "Usage Parameters: [<id> <value>]...(max. 8 pairs)" 0D
     "$VERDATE / GPL / Ammler" 00
-// first pair params:
+EOF
+TYPE=0
+FACT=1
+while [ $TYPE -lt 16 ]; do
+cat >>$NFO <<EOB
+// param$TYPE and param$FACT:
   0 * 0 0D // ActionD <target> <operation> <source1> <source2> [<data>]
-    00          // Parameter 0
+    \b$TYPE     // Parameter 0
     80          // if target not set, target = source1 
     FF          // source1: use value from data
     00          // source2: ignored
     \dxFFFF     // data
   0 * 0 0D
-    01          // Parameter 1
+    \b$FACT          // if Parameter 1 unset -> default 8
     80 FF 00 \d8
 
-// if parameter 0 not set
+// if parameter $TYPE not set
   0 * 0 09 // Action[07/09] <variable> <varsize> <condition-type> <value> <num-sprites>
-    00          // Parameter 0
+    \b$TYPE     // Parameter $TYPE
     02          // size
     \7=         // condition: equal to
     \wxFFFF
     02          // skip the whole (workaround because of bug, skip next 2)
 // else
   0 * 0 06 // Action6 (<param-num> <param-size> <offset>){n} FF
-    00 \b1 \b4  // Parameter 0
-    01 \b1 \b6  // Parameter 1
+    \b$TYPE \b1 \b4  // Parameter $TYPE
+    \b$FACT \b1 \b6  // Parameter $FACT
     FF
 
+// Action 0 will be modified by previous Action6
   0 * 0 00 // Action0 <Feature> <Num-props> <Num-info> <Id> (<Property <New-info>)...
     08          // Properties for general variables
     01 01      
-    00          // ID (param0)
+    00          // ID (TYPE)
     08          // Basecosts
-    08          // new value (param1)
-
-// check next parameter:
-  0 * 0 0D 02 80 FF 00 \dxFFFF
-  0 * 0 0D 03 80 FF 00 \d8
-
-  0 * 0 09 02 02 \7= \wxFFFF 02
-
-  0 * 0 06
-    02 \b1 \b4
-    03 \b1 \b6
-    FF
-
-  0 * 0 $ACTION0
-
-  0 * 0 0D 04 80 FF 00 \dxFFFF
-  0 * 0 0D 05 80 FF 00 \d8
-
-  0 * 0 09 04 02 \7= \wxFFFF 02
-
-  0 * 0 06
-    04 \b1 \b4
-    05 \b1 \b6
-    FF
-
-  0 * 0 $ACTION0
-
-  0 * 0 0D 06 80 FF 00 \dxFFFF
-  0 * 0 0D 07 80 FF 00 \d8
-
-  0 * 0 09 06 02 \7= \wxFFFF 02
-
-  0 * 0 06
-    06 \b1 \b4
-    07 \b1 \b6
-    FF
-
-  0 * 0 $ACTION0
-
-  0 * 0 0D 08 80 FF 00 \dxFFFF
-  0 * 0 0D 09 80 FF 00 \d8
-
-  0 * 0 09 08 02 \7= \wxFFFF 02
-
-  0 * 0 06
-    08 \b1 \b4
-    09 \b1 \b6
-    FF
-
-  0 * 0 $ACTION0
-
-  0 * 0 0D 0A 80 FF 00 \dxFFFF
-  0 * 0 0D 0B 80 FF 00 \d8
-
-  0 * 0 09 0A 02 \7= \wxFFFF 02
-
-  0 * 0 06
-    0A \b1 \b4
-    0B \b1 \b6
-    FF
-
-  0 * 0 $ACTION0
-
-  0 * 0 0D 0C 80 FF 00 \dxFFFF
-  0 * 0 0D 0D 80 FF 00 \d8
-
-  0 * 0 09 0C 02 \7= \wxFFFF 02
-
-  0 * 0 06
-    0C \b1 \b4
-    0D \b1 \b6
-    FF
-
-  0 * 0 $ACTION0
-
-  0 * 0 0D 0E 80 FF 00 \dxFFFF
-  0 * 0 0D 0F 80 FF 00 \d8
-
-  0 * 0 09 0E 02 \7= \wxFFFF 02
-
-  0 * 0 06
-    0E \b1 \b4
-    0F \b1 \b6
-    FF
-
-  0 * 0 $ACTION0
-
-EOF
+    08          // new value (FACT)
+/////////////////////////////////
+// NEXT PAIR:
+/////////////////////////////////
+EOB
+let TYPE+=2
+let FACT+=2
+done
 
 nforenum $NFO
 grfcodec -e $FILENAME.grf
