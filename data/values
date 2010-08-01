@@ -1,4 +1,5 @@
-"T" \d1 7F "almost null" 00
+"T" \d1 7F "free (no costs)" 00
+"T" \d6 7F "quarter" 00
 "T" \d7 7F "half" 00
 "T" \d8 7F "unchanged" 00
 "T" \d9 7F "double" 00
