@@ -83,11 +83,11 @@ cat >>$NFO <<EOB
     \wxFFFF
     00          // skip the rest
 
-// if parameter $FACT is null skip one else set it to 8
+// if parameter $FACT isn't null skip one else set it to 8
   0 * 0 09 // Action[07/09] <variable> <varsize> <condition-type> <value> <num-sprites>
     \b$FACT     // Parameter $FACT
     02          // size
-    \7=         // condition: equal to
+    \7!         // condition: not equal to
     \w0
     01          // skip the rest
   0 * 0 0D // ActionD <target> <operation> <source1> <source2> [<data>]
