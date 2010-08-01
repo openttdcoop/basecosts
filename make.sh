@@ -81,8 +81,22 @@ cat >>$NFO <<EOB
     02          // size
     \7=         // condition: equal to
     \wxFFFF
-    02          // skip the whole (workaround because of bug, skip next 2)
-// else
+    00          // skip the rest
+
+// if parameter $FACT is null skip one else set it to 8
+  0 * 0 09 // Action[07/09] <variable> <varsize> <condition-type> <value> <num-sprites>
+    \b$FACT     // Parameter $FACT
+    02          // size
+    \7=         // condition: equal to
+    \w0
+    01          // skip the rest
+  0 * 0 0D // ActionD <target> <operation> <source1> <source2> [<data>]
+    \b$TYPE     // Parameter 0
+    00          // target = source1
+    FF          // source1: use value from data
+    00          // source2: ignored
+    \d10         // data
+
   0 * 0 06 // Action6 (<param-num> <param-size> <offset>){n} FF
     \b$TYPE \b1 \b4  // Parameter $TYPE
     \b$FACT \b1 \b6  // Parameter $FACT
