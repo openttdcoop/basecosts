@@ -7,6 +7,7 @@
 GRFID="4D 47 03 03"
 FILENAME="basecosts"
 MAXPARAMS=44
+FACTDEF=10
 
 . lib/hg.version.sh
 
@@ -41,7 +42,7 @@ cat >>$NFO <<EOB
                           "T" "NAME" 7F "Factor" 00
                           "T" "DESC" 7F `cat data/param-desc` 00
                           "B" "TYPE" \w1 \b0
-                          "B" "LIMI" \w8 \d1 \d17
+                          "B" "LIMI" \w8 \d0 \d24
                           "C" "VALU"
 `cat data/values`
                               00
@@ -72,8 +73,8 @@ cat >>$NFO <<EOB
     00          // source2: ignored
     \dxFFFF     // data
   0 * 0 0D
-    \b$FACT          // if Parameter 1 unset -> default 8
-    80 FF 00 \d8
+    \b$FACT          // if Parameter $FACT unset -> default $FACTDEF
+    80 FF 00 \d$FACTDEF
 
 // if parameter $TYPE not set
   0 * 0 09 // Action[07/09] <variable> <varsize> <condition-type> <value> <num-sprites>
@@ -83,19 +84,19 @@ cat >>$NFO <<EOB
     \wxFFFF
     00          // skip the rest
 
-// if parameter $FACT isn't null skip one else set it to 8
+// if parameter $FACT isn't null skip one else set it to $FACTDEF
   0 * 0 09 // Action[07/09] <variable> <varsize> <condition-type> <value> <num-sprites>
     \b$FACT     // Parameter $FACT
     02          // size
     \7!         // condition: not equal to
     \w0
-    01          // skip the rest
+    01          // skip the next
   0 * 0 0D // ActionD <target> <operation> <source1> <source2> [<data>]
     \b$TYPE     // Parameter 0
     00          // target = source1
     FF          // source1: use value from data
     00          // source2: ignored
-    \d10         // data
+    \d$FACTDEF  // data
 
   0 * 0 06 // Action6 (<param-num> <param-size> <offset>){n} FF
     \b$TYPE \b1 \b4  // Parameter $TYPE
@@ -105,13 +106,14 @@ cat >>$NFO <<EOB
 // Action 0 will be modified by previous Action6
   0 * 0 00 // Action0 <Feature> <Num-props> <Num-info> <Id> (<Property <New-info>)...
     08          // Properties for general variables
-    01 01      
+    01 01       // 1 properity, 1 type (id)
     00          // ID (TYPE)
     08          // Basecosts
     08          // new value (FACT)
 /////////////////////////////////
 // NEXT PAIR:
 /////////////////////////////////
+
 EOB
 let TYPE+=2
 let FACT+=2
