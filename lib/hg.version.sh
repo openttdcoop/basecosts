@@ -5,6 +5,6 @@ REVISION=`hg parent --template="{rev}"`
 if [ $TAG ]; then
   VERSION="$TAG"
 else
-  VERSION="r$REVISION"
+  VERSION="r`hg id -n`"
 fi
 VERDATE=`hg parent --template="{date|shortdate}"`

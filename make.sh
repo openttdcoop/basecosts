@@ -42,7 +42,8 @@ cat >>$NFO <<EOB
                           "T" "NAME" 7F "Factor" 00
                           "T" "DESC" 7F `cat data/param-desc` 00
                           "B" "TYPE" \w1 \b0
-                          "B" "LIMI" \w8 \d0 \d24
+                          "B" "DFLT" \w4 \d$FACTDEF
+                          "B" "LIMI" \w8 \d1 \d24
                           "C" "VALU"
 `cat data/values`
                               00
