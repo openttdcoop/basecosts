@@ -23,6 +23,7 @@ cat >$NFO <<EOF
  -1 * 0  14 "C" "INFO"
                   "B" "PALS" \w1 "A"
                   "B" "VRSN" \w4 \d$REVISION
+                  "B" "MVER" \w4 \d0
                   "B" "NPAR" \w1 \b$MAXPARAMS
                   "C" "PARA"
 EOF
