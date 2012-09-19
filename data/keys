@@ -1,52 +1,52 @@
-"T" \d0 7F "miscellaneous " 00
-"T" \d1 7F "build track " 00
-"T" \d2 7F "build road " 00
-"T" \d3 7F "place signal " 00
-"T" \d4 7F "build bridge tile " 00
-"T" \d5 7F "build rail depot " 00
-"T" \d6 7F "build road depot " 00
-"T" \d7 7F "build ship depot " 00
-"T" \d8 7F "build tunnel unit " 00
-"T" \d9 7F "build platform unit (per tile) " 00
-"T" \d10 7F "build platform fixed (per platform) " 00
-"T" \d11 7F "build airport tile " 00
-"T" \d12 7F "build bus station " 00
-"T" \d13 7F "build lorry area " 00
-"T" \d14 7F "build dock, also affects 'build buoy' (*) " 00
-"T" \d15 7F "locomotive purchase " 00
-"T" \d16 7F "waggon purchase " 00
-"T" \d17 7F "aircraft purchase " 00
-"T" \d18 7F "road vehicle purchase " 00
-"T" \d19 7F "ship purchase " 00
-"T" \d20 7F "plant tree " 00
-"T" \d21 7F "raise/lower land, also affects 'build foundation' (*) " 00
-"T" \d22 7F "clear grass " 00
-"T" \d23 7F "clear rough land, also affects 'build/remove object' (*) " 00
-"T" \d24 7F "clear rocks " 00
-"T" \d25 7F "clear fields " 00
-"T" \d26 7F "remove tree " 00
-"T" \d27 7F "remove track " 00
-"T" \d28 7F "remove signal " 00
-"T" \d29 7F "remove bridge tile, also affects 'remove aqueduct' (*) " 00
-"T" \d30 7F "remove rail depot " 00
-"T" \d31 7F "remove road depot " 00
-"T" \d32 7F "remove ship depot " 00
-"T" \d33 7F "remove tunnel tile " 00
-"T" \d34 7F "clear water, also affects 'build/remove canal/lock' and 'build aqueduct' (*) " 00
-"T" \d35 7F "remove platform tile " 00
-"T" \d36 7F "remove airport tile " 00
-"T" \d37 7F "remove bus station " 00
-"T" \d38 7F "remove lorry area, also affects 'remove buoy' (*) (**) " 00
-"T" \d39 7F "remove dock " 00
-"T" \d40 7F "remove house, also affects 'remove industry' (*) " 00
-"T" \d41 7F "remove road " 00
-"T" \d42 7F "steam engine running costs " 00
-"T" \d43 7F "diesel engine running costs " 00
-"T" \d44 7F "electricengine running costs " 00
-"T" \d45 7F "aircraft running costs " 00
-"T" \d46 7F "road vehicle running costs " 00
-"T" \d47 7F "ship running costs " 00
-"T" \d48 7F "funding industries, also affects 'stuff with local authority', 'build raw industry' and 'fund town' (*) " 00
+"T" \d0 7F "miscellaneous" 00
+"T" \d1 7F "build track, also affects 'rail maintenance'" 00
+"T" \d2 7F "build road, also affects 'road maintenance' " 00
+"T" \d3 7F "place signal" 00
+"T" \d4 7F "build bridge tile" 00
+"T" \d5 7F "build rail depot, also affects 'build rail-waypoint' " 00
+"T" \d6 7F "build road depot" 00
+"T" \d7 7F "build ship depot" 00
+"T" \d8 7F "build tunnel unit" 00
+"T" \d9 7F "build platform unit (per tile)" 00
+"T" \d10 7F "build platform fixed (per platform)" 00
+"T" \d11 7F "build airport tile, also affects 'airport maintenance' " 00
+"T" \d12 7F "build bus station" 00
+"T" \d13 7F "build lorry area" 00
+"T" \d14 7F "build dock, also affects 'build buoy' " 00
+"T" \d15 7F "locomotive purchase" 00
+"T" \d16 7F "waggon purchase" 00
+"T" \d17 7F "aircraft purchase" 00
+"T" \d18 7F "road vehicle purchase" 00
+"T" \d19 7F "ship purchase" 00
+"T" \d20 7F "plant tree" 00
+"T" \d21 7F "raise/lower land, also affects 'build foundation' " 00
+"T" \d22 7F "clear grass" 00
+"T" \d23 7F "clear rough land, also affects 'build/remove object'" 00
+"T" \d24 7F "clear rocks" 00
+"T" \d25 7F "clear fields" 00
+"T" \d26 7F "remove tree" 00
+"T" \d27 7F "remove track" 00
+"T" \d28 7F "remove signal" 00
+"T" \d29 7F "remove bridge tile, also affects 'remove aqueduct' " 00
+"T" \d30 7F "remove rail depot, also affects 'remove rail-waypoint' " 00
+"T" \d31 7F "remove road depot" 00
+"T" \d32 7F "remove ship depot" 00
+"T" \d33 7F "remove tunnel tile" 00
+"T" \d34 7F "clear water, also affects 'build/remove canal/lock' and 'build aqueduct' [1]" 00
+"T" \d35 7F "remove platform tile" 00
+"T" \d36 7F "remove airport tile" 00
+"T" \d37 7F "remove bus station" 00
+"T" \d38 7F "remove lorry area, also affects 'remove buoy'" 00
+"T" \d39 7F "remove dock" 00
+"T" \d40 7F "remove house, also affects 'remove industry' " 00
+"T" \d41 7F "remove road" 00
+"T" \d42 7F "steam engine running costs" 00
+"T" \d43 7F "diesel engine running costs" 00
+"T" \d44 7F "electricengine running costs" 00
+"T" \d45 7F "aircraft running costs" 00
+"T" \d46 7F "road vehicle running costs" 00
+"T" \d47 7F "ship running costs" 00
+"T" \d48 7F "funding industries, also affects 'stuff with local authority', 'build raw industry' and 'fund town' " 00
 "T" \d49 7F "remove industry" 00
 "T" \d50 7F "build object" 00
 "T" \d51 7F "remove object" 00
@@ -58,9 +58,14 @@
 "T" \d57 7F "build foundation" 00
 "T" \d58 7F "build raw industry (in case prospecting is disabled)" 00
 "T" \d59 7F "fund town" 00
-"T" \d60 7F "build canal" 00
+"T" \d60 7F "build canal, also affects 'canal maintenance'" 00
 "T" \d61 7F "remove canal" 00
 "T" \d62 7F "build aqueduct" 00
 "T" \d63 7F "remove aqueduct" 00
 "T" \d64 7F "build lock" 00
 "T" \d65 7F "remove lock" 00
+"T" \d66 7F "rail maintenance" 00
+"T" \d67 7F "road maintenance" 00
+"T" \d68 7F "canal maintenance" 00
+"T" \d69 7F "station maintenance" 00
+"T" \d70 7F "airport maintenance" 00

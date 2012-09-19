@@ -1,4 +1,8 @@
 "T" \d1 7F "free (no costs)" 00
+"T" \d2 7F "1/64" 00
+"T" \d3 7F "1/32" 00
+"T" \d4 7F "1/16" 00
+"T" \d5 7F "1/8" 00
 "T" \d6 7F "quarter" 00
 "T" \d7 7F "half" 00
 "T" \d8 7F "unchanged" 00

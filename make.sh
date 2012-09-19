@@ -28,13 +28,15 @@ cat >$NFO <<EOF
                   "C" "PARA"
 EOF
 PARAM=0
+
 while [ $PARAM -lt $MAXPARAMS ]; do
 cat >>$NFO <<EOB
                       "C" \d$PARAM
                           "T" "NAME" 7F "Type" 00
                           "T" "DESC" 7F `cat data/param-desc` 00
                           "B" "TYPE" \w1 \b0
-                          "B" "LIMI" \w8 \d0 \d65
+
+                          "B" "LIMI" \w8 \d0 \d`cat data/keys | wc -l`
                           "C" "VALU"
 `cat data/keys`
                               00
