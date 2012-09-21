@@ -25,6 +25,7 @@ cat >$NFO <<EOF
                   "B" "VRSN" \w4 \d$REVISION
                   "B" "MINV" \w4 \d0
                   "B" "NPAR" \w1 \b$MAXPARAMS
+                  "T" "URL_" 7F "http://dev.openttdcoop.org/p/basecosts" 00
                   00
             00
 EOF
@@ -67,7 +68,7 @@ let PARAM+=2
 done
 cat >>$NFO <<EOF
   0 * 0	08 07 $GRFID "BaseCosts Mod $VERSION" 00
-    "http://wiki.openttdcoop.org/BaseCosts" 0D
+    "http://dev.openttdcoop.org/p/basecosts" 0D
     "Usage Parameters: [<id> <value>]...(max. 22 pairs)" 0D
     "$VERDATE / GPL / Ammler" 00
 EOF
