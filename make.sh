@@ -38,7 +38,7 @@ cat >>$NFO <<EOB
  -1 * 0  14 "C" "INFO"
                   "C" "PARA"
                       "C" \d$PARAM
-                          "T" "NAME" 7F "Type" 00
+                          "T" "NAME" 7F "$i" 00
                           "T" "DESC" 7F "$i" 00
                           "B" "TYPE" \w1 \b0
                           "B" "DFLT" \w4 \d$FACTDEF
@@ -62,10 +62,15 @@ TYPE=0
 FACT=1
 for i in $(cat data/keys); do
 cat >>$NFO <<EOB
+
 // param$TYPE: $i
   0 * 0 0D
     \b$TYPE          // if Parameter $TYPE unset -> default $FACTDEF
     80 FF 00 \d$FACTDEF
+
+  0 * 0 06 // Action6 (<param-num> <param-size> <offset>){n} FF
+    \b$TYPE \b1 \b6  // Parameter $TYPE
+    FF
 
 // Action 0 will be modified by previous Action6
   0 * 0 00 // Action0 <Feature> <Num-props> <Num-info> <Id> (<Property <New-info>)...
@@ -73,10 +78,9 @@ cat >>$NFO <<EOB
     01 01       // 1 properity, 1 type (id)
     \b$TYPE     // ID (TYPE)
     08          // Basecosts
-    \b$FACT     // new value (FACT)
+    00          // new value (FACT)
 
 ////////////////////////////////////////////////
-
 EOB
 let TYPE+=1
 done
