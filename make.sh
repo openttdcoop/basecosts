@@ -6,7 +6,6 @@
 
 GRFID="4D 47 03 05"
 FILENAME="basecosts"
-MAXPARAMS=44
 FACTDEF=10
 
 . lib/hg.version.sh
@@ -25,8 +24,8 @@ cat >$NFO <<EOF
  -1 * 0  14 "C" "INFO"
                   "B" "PALS" \w1 "A"
                   "B" "VRSN" \w4 \d$REVISION
-                  "B" "MINV" \w4 \d0
-                  "B" "NPAR" \w1 \b$MAXPARAMS
+                  "B" "MINV" \w4 \d32
+                  "B" "NPAR" \w1 \b$(cat data/keys | wc -l)
                   "T" "URL_" 7F "http://dev.openttdcoop.org/p/basecosts" 00
                   00
             00
@@ -59,7 +58,6 @@ cat >>$NFO <<EOF
     "$VERDATE / GPL / Ammler" 00
 EOF
 TYPE=0
-FACT=1
 for i in $(cat data/keys); do
 cat >>$NFO <<EOB
 
