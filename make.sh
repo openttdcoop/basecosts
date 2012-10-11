@@ -6,7 +6,7 @@
 
 GRFID="4D 47 03 05"
 FILENAME="basecosts"
-FACTDEF=10
+FACTDEF=8
 
 . lib/hg.version.sh
 
